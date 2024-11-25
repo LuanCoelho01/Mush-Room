@@ -12,7 +12,7 @@ CREATE TABLE TBprodutos(
 id_produto INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
 nome_produto VARCHAR (50) NOT NULL,
 info_produto VARCHAR (50) NOT NULL,
-quant_minima VARCHAR (8) NOT NULL
+quant_minima VARCHAR (8) NOT NULL,
 quant_estoque VARCHAR (10) NOT NULL
 );
 
