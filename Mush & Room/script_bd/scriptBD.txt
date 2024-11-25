@@ -3,7 +3,7 @@
 USE BDcogumelos;
 
 CREATE TABLE TBusuarios(
-id_usuario INT PRIMARY KEY INDENTITY (1,1) NOT NULL,
+id_usuario INT PRIMARY KEY IDENTITY (1,1) NOT NULL,
 nome_usuario VARCHAR (50) UNIQUE,
 senha_usuario VARCHAR (20) NOT NULL
 );
@@ -41,3 +41,6 @@ produto_comprado VARCHAR (80) NOT NULL,
 qtd_comprada VARCHAR (15) NOT NULL,
 valor_total DECIMAL (10,2) NOT NULL
 );
+
+
+INSERT INTO TBusuarios(nome_usuario, senha_usuario) VALUES ('Luan', '1010');
