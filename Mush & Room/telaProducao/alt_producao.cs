@@ -42,16 +42,16 @@ namespace Mush___Room.telaProducao
         }
 
 
-        private void alt_producao_Load(object sender, EventArgs e)
-        {
+        //private void alt_producao_Load(object sender, EventArgs e)
+        //{
 
-            id = producao.selectedrow.Cells[0].Value.ToString();
-            txtAltNomeProducao.Text = producao.selectedrow.Cells[1].Value.ToString();
-            txtAltInfoProducao.Text = producao.selectedrow.Cells[2].Value.ToString();       // recebe as informações da grid e as mostra nos respectivos campos
-            //producaoAntiga = producao.selectedrow.Cells[2].Value.ToString();
-            txtAltIniProducao.Text = producao.selectedrow.Cells[3].Value.ToString();
-            txtAltTrocaSubstrato.Text = producao.selectedrow.Cells[4].Value.ToString();
-        }
+        //    id = producao.selectedrow.Cells[0].Value.ToString();
+        //    txtAltNomeProducao.Text = producao.selectedrow.Cells[1].Value.ToString();
+        //    txtAltInfoProducao.Text = producao.selectedrow.Cells[2].Value.ToString();       // recebe as informações da grid e as mostra nos respectivos campos
+        //    //producaoAntiga = producao.selectedrow.Cells[2].Value.ToString();
+        //    txtAltIniProducao.Text = producao.selectedrow.Cells[3].Value.ToString();
+        //    txtAltTrocaSubstrato.Text = producao.selectedrow.Cells[4].Value.ToString();
+        //}
 
 
 

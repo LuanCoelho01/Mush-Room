@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Mush___Room.telaProducao;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 
 
 namespace Mush___Room.telaFornecedores
@@ -61,49 +62,77 @@ namespace Mush___Room.telaFornecedores
             //gridProducao.Columns[4].Width = 500;
             gridFornecedores.Columns[0].Visible = false;
 
+
             //gridProducao.Columns[5].Visible = false; parte de data que preciso adicionar
 
 
         }
 
-      
+
 
         private void btnCadForn_Click_1(object sender, EventArgs e)
         {
 
-            
-            ValidarCampos();
-            //if (txtNomeFornecedor.Text.ToString().Trim() == "") // .Trim() não permite que apenas espaços sejam inseridos e salvos
-            //{
-            //    MessageBox.Show("Preencha o campo 'Nome do Fornecedor'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    txtNomeFornecedor.Text = "";
-            //    txtNomeFornecedor.Focus();
-            //    return;
-            //}
 
-            //if (txtNomeProduto.Text.ToString().Trim() == "")
-            //{
-            //    MessageBox.Show("Preencha o campo 'Nome do Produto'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    txtNomeProduto.Text = "";
-            //    txtNomeProduto.Focus();
-            //    return;
-            //}
+            //ValidarCampos();
 
-            //if (mskCNPJ.Text == "   .   .   .  -  " || mskCNPJ.Text.Length < 14)
-            //{
-            //    MessageBox.Show("Preencha o campo 'CNPJ'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    mskCNPJ.Text = "";
-            //    mskCNPJ.Focus();
-            //    return;
-            //}
 
-            //if (mskTelefone.Text == "(  )    -    " || mskTelefone.Text.Length < 14)
-            //{
-            //    MessageBox.Show("Preencha o campo 'Telefone'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    mskTelefone.Text = "";
-            //    mskTelefone.Focus();
-            //    return;
-            //}
+
+
+
+            if (txtNomeFornecedor.Text.ToString().Trim() == "") // .Trim() não permite que apenas espaços sejam inseridos e salvos
+            {
+                MessageBox.Show("Preencha o campo 'Nome do Fornecedor'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNomeFornecedor.Text = "";
+                txtNomeFornecedor.Focus();
+                return;
+            }
+
+            if (txtNomeProduto.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Preencha o campo 'Nome do Produto'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNomeProduto.Text = "";
+                txtNomeProduto.Focus();
+                return;
+            }
+
+            if (mskCNPJ.Text == "   .   .   .  -  " || mskCNPJ.Text.Length < 14)
+            {
+                MessageBox.Show("Preencha o campo 'CNPJ'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mskCNPJ.Text = "";
+                mskCNPJ.Focus();
+                return;
+            }
+
+
+            validacaoCNPJ valid = new validacaoCNPJ();
+            mskCNPJ.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            string cnpj = mskCNPJ.Text;
+            bool verFal = valid.ValidarCNPJ(cnpj);
+            if (verFal)
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("CNPJ Inválido", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mskCNPJ.Text = "";
+                mskCNPJ.Focus();
+                return;
+            }
+
+
+
+
+
+            if (mskTelefone.Text == "(  )    -    " || mskTelefone.Text.Length < 14)
+                {
+                    MessageBox.Show("Preencha o campo 'Telefone'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    mskTelefone.Text = "";
+                    mskTelefone.Focus();
+                    return;
+                }
+
 
 
 
@@ -126,69 +155,91 @@ namespace Mush___Room.telaFornecedores
 
             MessageBox.Show("Registro salvo com sucesso!", "Cadastro de produção", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            
+
             LimparCampos();
+
         }
 
 
-       
-            private void btnAltForn_Click(object sender, EventArgs e)
+
+        private void btnAltForn_Click(object sender, EventArgs e)
         {
             if (txtNomeFornecedor.Text.ToString().Trim() == "") // .Trim() não permite que apenas espaços sejam inseridos e salvos
-                {
-                    MessageBox.Show("Preencha o campo 'Nome do Fornecedor'", "Alterar dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtNomeFornecedor.Text = "";
-                    txtNomeFornecedor.Focus();
-                    return;
-                }
+            {
+                MessageBox.Show("Preencha o campo 'Nome do Fornecedor'", "Cadastrar fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNomeFornecedor.Text = "";
+                txtNomeFornecedor.Focus();
+                return;
+            }
 
 
-                if (txtNomeProduto.Text.ToString().Trim() == "")
-                {
-                    MessageBox.Show("Preencha o campo 'Nome do Produto'", "Alterar dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtNomeProduto.Text = "";
-                    txtNomeProduto.Focus();
-                    return;
-                }
+            if (txtNomeProduto.Text.ToString().Trim() == "")
+            {
+                MessageBox.Show("Preencha o campo 'Nome do Produto'", "Cadastrar fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNomeProduto.Text = "";
+                txtNomeProduto.Focus();
+                return;
+            }
 
-                if (mskCNPJ.Text == "   .   .  -  " || mskCNPJ.Text.Length < 15)
-                {
-                    MessageBox.Show("Preencha o campo 'CNPJ'", "Alterar dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    mskCNPJ.Text = "";
-                    mskCNPJ.Focus();
-                    return;
-                }
+            if (mskCNPJ.Text == "   .   .  -  " || mskCNPJ.Text.Length < 15)
+            {
+                MessageBox.Show("Preencha o campo 'CNPJ'", "Cadastrar fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mskCNPJ.Text = "";
+                mskCNPJ.Focus();
+                return;
+            }
 
-                if (mskTelefone.Text == "(  )    -    " || mskTelefone.Text.Length < 14)
-                {
-                    MessageBox.Show("Preencha o campo 'Telefone'", "Alterar dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    mskTelefone.Text = "";
-                    mskTelefone.Focus();
-                    return;
-                }
+            validacaoCNPJ valid = new validacaoCNPJ();
+            mskCNPJ.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            string cnpj = mskCNPJ.Text;
+            bool verFal = valid.ValidarCNPJ(cnpj);
+            if (verFal)
+            {
 
-
-
-                con.AbrirConexao();
-
-                sql = "UPDATE TBfornecedores SET nome_fornecedor = @nome_fornecedor, nome_produto = @nome_produto, cnpj = @cnpj, telefone = @telefone WHERE id_forn = @id_forn";
-                
-                cmd = new SqlCommand(sql, con.con);
-
-                cmd.Parameters.AddWithValue("@id_forn", id); //WHERE
-                cmd.Parameters.AddWithValue("@nome_fornecedor", txtNomeFornecedor.Text);
-                cmd.Parameters.AddWithValue("@nome_produto", txtNomeProduto.Text);
-                cmd.Parameters.AddWithValue("@cnpj", mskCNPJ.Text);
-                cmd.Parameters.AddWithValue("@telefone", mskTelefone.Text);
+            }
+            else
+            {
+                MessageBox.Show("CNPJ Inválido", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mskCNPJ.Text = "";
+                mskCNPJ.Focus();
+                return;
+            }
 
 
-                cmd.ExecuteNonQuery();
-                con.FecharConexao();
 
-                Listar();
-                LimparCampos();
 
-            MessageBox.Show("Registro alterado com sucesso!", "Alterar produção", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (mskTelefone.Text == "(  )    -    " || mskTelefone.Text.Length < 14)
+            {
+                MessageBox.Show("Preencha o campo 'Telefone'", "Cadastrar fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mskTelefone.Text = "";
+                mskTelefone.Focus();
+                return;
+            }
+
+
+
+            con.AbrirConexao();
+
+            sql = "UPDATE TBfornecedores SET nome_fornecedor = @nome_fornecedor, nome_produto = @nome_produto, cnpj = @cnpj, telefone = @telefone WHERE id_forn = @id_forn";
+
+            cmd = new SqlCommand(sql, con.con);
+
+            cmd.Parameters.AddWithValue("@id_forn", id); //WHERE
+            cmd.Parameters.AddWithValue("@nome_fornecedor", txtNomeFornecedor.Text);
+            cmd.Parameters.AddWithValue("@nome_produto", txtNomeProduto.Text);
+            cmd.Parameters.AddWithValue("@cnpj", mskCNPJ.Text);
+            cmd.Parameters.AddWithValue("@telefone", mskTelefone.Text);
+
+
+            cmd.ExecuteNonQuery();
+            con.FecharConexao();
+
+            Listar();
+            LimparCampos();
+
+            MessageBox.Show("Registro alterado com sucesso!", "Alterar fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DesabilitarCampos();
+
         }
 
 
@@ -205,13 +256,15 @@ namespace Mush___Room.telaFornecedores
             LimparCampos();
 
             MessageBox.Show("Fornecedor deletado com sucesso!", "Excluir fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DesabilitarCampos();
+
         }
 
         private void gridFornecedores_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //if(e.RowIndex >= 0)
             //    {
-                
+
             //    id = gridFornecedores.SelectedRows[0].Cells[0].Value.ToString();
 
             //    txtNomeFornecedor.Text = gridFornecedores.SelectedRows[0].Cells[1].Value.ToString();
@@ -241,9 +294,9 @@ namespace Mush___Room.telaFornecedores
 
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
-                MessageBox.Show("Seleção inválida! Por favor, selecione a linha desejada com duplo clique.");  
+                MessageBox.Show("Seleção inválida! Por favor, selecione a linha desejada com duplo clique.");
             }
 
         }
@@ -260,8 +313,8 @@ namespace Mush___Room.telaFornecedores
             txtNomeProduto.Enabled = true;
             mskCNPJ.Enabled = true;
             mskTelefone.Enabled = true;
-            
-            
+
+
         }
 
         private void LimparCampos()
@@ -275,43 +328,48 @@ namespace Mush___Room.telaFornecedores
 
         private void ValidarCampos()
         {
-            if (txtNomeFornecedor.Text.ToString().Trim() == "") // .Trim() não permite que apenas espaços sejam inseridos e salvos
+            do
             {
-                MessageBox.Show("Preencha o campo 'Nome do Fornecedor'", "Dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNomeFornecedor.Text = "";
-                txtNomeFornecedor.Focus();
-                return;
-            }
+
+                if (txtNomeFornecedor.Text.ToString().Trim() == "") // .Trim() não permite que apenas espaços sejam inseridos e salvos
+                {
+                    MessageBox.Show("Preencha o campo 'Nome do Fornecedor'", "Dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNomeFornecedor.Text = "";
+                    txtNomeFornecedor.Focus();
+                    return;
+                }
 
 
-            if (txtNomeProduto.Text.ToString().Trim() == "")
-            {
-                MessageBox.Show("Preencha o campo 'Nome do Produto'", "Dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNomeProduto.Text = "";
-                txtNomeProduto.Focus();
-                return;
-            }
+                if (txtNomeProduto.Text.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Preencha o campo 'Nome do Produto'", "Dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNomeProduto.Text = "";
+                    txtNomeProduto.Focus();
+                    return;
+                }
 
-            if (mskCNPJ.Text == "   .   .  -  " || mskCNPJ.Text.Length < 15)
-            {
-                MessageBox.Show("Preencha o campo 'CNPJ'", "Dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                mskCNPJ.Text = "";
-                mskCNPJ.Focus();
-                return;
-            }
+                if (mskCNPJ.Text == "  .   .   /    -  " || mskCNPJ.Text.Length < 18)
+                {
+                    MessageBox.Show("Preencha o campo 'CNPJ'", "Cadastrar fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    mskCNPJ.Text = "";
+                    mskCNPJ.Focus();
+                    return;
+                }
 
-            if (mskTelefone.Text == "(  )    -    " || mskTelefone.Text.Length < 14)
-            {
-                MessageBox.Show("Preencha o campo 'Telefone'", "Dados do fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                mskTelefone.Text = "";
-                mskTelefone.Focus();
-                return;
-            }
+                if (mskTelefone.Text == "(  )    -    " || mskTelefone.Text.Length < 14)
+                {
+                    MessageBox.Show("Preencha o campo 'Telefone'", "Cadastro de fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    mskTelefone.Text = "";
+                    mskTelefone.Focus();
+                    return;
+                }
+            } while (txtNomeFornecedor.Text == "" || txtNomeProduto.Text == "" || mskCNPJ.Text == "   .   .   -  " || mskTelefone.Text == "(  )    -    ");
+
         }
 
         private void DesabilitarCampos()
         {
-            
+
             btnAltForn.Enabled = false;
             btnExcForn.Enabled = false;
             btnCancelar.Enabled = false;
@@ -322,7 +380,7 @@ namespace Mush___Room.telaFornecedores
             //mskTelefone.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             txtNomeFornecedor.Text = "";
             txtNomeProduto.Text = "";
@@ -332,8 +390,62 @@ namespace Mush___Room.telaFornecedores
             DesabilitarCampos();
         }
 
+
+        private void nomeEmpresa_Click(object sender, EventArgs e)
+        {
+            Mush___Room.frmPrincipal frm = new Mush___Room.frmPrincipal();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void logoEmpresa_Click(object sender, EventArgs e)
+        {
+            Mush___Room.frmPrincipal frm = new Mush___Room.frmPrincipal();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void produçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            telaProducao.producao frm = new telaProducao.producao();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void comprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            telaCompras.compras frm = new telaCompras.compras();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            telaProdutos.produtos frm = new telaProdutos.produtos();
+            this.Hide();
+            frm.Show();
+        }
+
+        private void txtNomeFornecedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar)) {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNomeProduto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         
+
     }
+
+    
 
     
             

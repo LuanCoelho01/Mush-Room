@@ -47,10 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexao.cs" />
-    <Compile Include="frmPrincipal.cs">
+    <Compile Include="telaPrincipal\frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPrincipal.Designer.cs">
+    <Compile Include="telaPrincipal\frmPrincipal.Designer.cs">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -97,10 +97,10 @@
     <Compile Include="telaProducao\producao.Designer.cs">
       <DependentUpon>producao.cs</DependentUpon>
     </Compile>
-    <Compile Include="telaProducao\telaLogin.cs">
+    <Compile Include="telaLogin\telaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="telaProducao\telaLogin.Designer.cs">
+    <Compile Include="telaLogin\telaLogin.Designer.cs">
       <DependentUpon>telaLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="telaProdutos\cad_produto.cs">
@@ -115,7 +115,8 @@
     <Compile Include="telaProdutos\produtos.Designer.cs">
       <DependentUpon>produtos.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmPrincipal.resx">
+    <Compile Include="validacaoCNPJ.cs" />
+    <EmbeddedResource Include="telaPrincipal\frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -149,7 +150,7 @@
     <EmbeddedResource Include="telaProducao\producao.resx">
       <DependentUpon>producao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="telaProducao\telaLogin.resx">
+    <EmbeddedResource Include="telaLogin\telaLogin.resx">
       <DependentUpon>telaLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="telaProdutos\cad_produto.resx">
@@ -173,6 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\mushroom_icon_138360.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="script_bd\scriptBD.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

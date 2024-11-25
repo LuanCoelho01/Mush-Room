@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fornecedores));
             this.nomeEmpresa = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -36,7 +37,7 @@
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.logoEmpresa = new System.Windows.Forms.PictureBox();
             this.lblCNPJ = new System.Windows.Forms.Label();
             this.lblTelefone = new System.Windows.Forms.Label();
             this.lblFornecedor = new System.Windows.Forms.Label();
@@ -51,7 +52,7 @@
             this.gridFornecedores = new System.Windows.Forms.DataGridView();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoEmpresa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFornecedores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +66,7 @@
             this.nomeEmpresa.Size = new System.Drawing.Size(112, 25);
             this.nomeEmpresa.TabIndex = 10;
             this.nomeEmpresa.Text = "Mush && Room";
+            this.nomeEmpresa.Click += new System.EventHandler(this.nomeEmpresa_Click);
             // 
             // menuStrip1
             // 
@@ -78,9 +80,10 @@
             this.comprasToolStripMenuItem,
             this.produtosToolStripMenuItem,
             this.relatóriosToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(625, 16);
+            this.menuStrip1.Location = new System.Drawing.Point(626, 16);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(455, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(454, 25);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -90,9 +93,11 @@
             this.produçãoToolStripMenuItem.Name = "produçãoToolStripMenuItem";
             this.produçãoToolStripMenuItem.Size = new System.Drawing.Size(85, 21);
             this.produçãoToolStripMenuItem.Text = "Produção";
+            this.produçãoToolStripMenuItem.Click += new System.EventHandler(this.produçãoToolStripMenuItem_Click);
             // 
             // fornecedoresToolStripMenuItem
             // 
+            this.fornecedoresToolStripMenuItem.BackColor = System.Drawing.Color.Chocolate;
             this.fornecedoresToolStripMenuItem.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
             this.fornecedoresToolStripMenuItem.Name = "fornecedoresToolStripMenuItem";
             this.fornecedoresToolStripMenuItem.Size = new System.Drawing.Size(110, 21);
@@ -104,6 +109,7 @@
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
             this.comprasToolStripMenuItem.Size = new System.Drawing.Size(80, 21);
             this.comprasToolStripMenuItem.Text = "Compras";
+            this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
             // 
             // produtosToolStripMenuItem
             // 
@@ -111,6 +117,7 @@
             this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
             this.produtosToolStripMenuItem.Size = new System.Drawing.Size(82, 21);
             this.produtosToolStripMenuItem.Text = "Produtos";
+            this.produtosToolStripMenuItem.Click += new System.EventHandler(this.produtosToolStripMenuItem_Click);
             // 
             // relatóriosToolStripMenuItem
             // 
@@ -119,22 +126,23 @@
             this.relatóriosToolStripMenuItem.Size = new System.Drawing.Size(90, 21);
             this.relatóriosToolStripMenuItem.Text = "Relatórios";
             // 
-            // pictureBox1
+            // logoEmpresa
             // 
-            this.pictureBox1.Image = global::Mush___Room.Properties.Resources.mushroom_icon_138360;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(93, 62);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
+            this.logoEmpresa.Image = global::Mush___Room.Properties.Resources.mushroom_icon_138360;
+            this.logoEmpresa.Location = new System.Drawing.Point(0, 0);
+            this.logoEmpresa.Margin = new System.Windows.Forms.Padding(4);
+            this.logoEmpresa.Name = "logoEmpresa";
+            this.logoEmpresa.Size = new System.Drawing.Size(93, 62);
+            this.logoEmpresa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logoEmpresa.TabIndex = 9;
+            this.logoEmpresa.TabStop = false;
+            this.logoEmpresa.Click += new System.EventHandler(this.logoEmpresa_Click);
             // 
             // lblCNPJ
             // 
             this.lblCNPJ.AutoSize = true;
             this.lblCNPJ.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
-            this.lblCNPJ.Location = new System.Drawing.Point(13, 262);
+            this.lblCNPJ.Location = new System.Drawing.Point(21, 252);
             this.lblCNPJ.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCNPJ.Name = "lblCNPJ";
             this.lblCNPJ.Size = new System.Drawing.Size(40, 17);
@@ -145,7 +153,7 @@
             // 
             this.lblTelefone.AutoSize = true;
             this.lblTelefone.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
-            this.lblTelefone.Location = new System.Drawing.Point(13, 303);
+            this.lblTelefone.Location = new System.Drawing.Point(21, 293);
             this.lblTelefone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(64, 17);
@@ -156,7 +164,7 @@
             // 
             this.lblFornecedor.AutoSize = true;
             this.lblFornecedor.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
-            this.lblFornecedor.Location = new System.Drawing.Point(13, 174);
+            this.lblFornecedor.Location = new System.Drawing.Point(21, 164);
             this.lblFornecedor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFornecedor.Name = "lblFornecedor";
             this.lblFornecedor.Size = new System.Drawing.Size(141, 17);
@@ -167,7 +175,7 @@
             // 
             this.lblProduto.AutoSize = true;
             this.lblProduto.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
-            this.lblProduto.Location = new System.Drawing.Point(13, 220);
+            this.lblProduto.Location = new System.Drawing.Point(21, 210);
             this.lblProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProduto.Name = "lblProduto";
             this.lblProduto.Size = new System.Drawing.Size(123, 17);
@@ -176,42 +184,49 @@
             // 
             // txtNomeFornecedor
             // 
-            this.txtNomeFornecedor.Location = new System.Drawing.Point(161, 171);
+            this.txtNomeFornecedor.Location = new System.Drawing.Point(191, 159);
+            this.txtNomeFornecedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNomeFornecedor.Name = "txtNomeFornecedor";
-            this.txtNomeFornecedor.Size = new System.Drawing.Size(266, 22);
+            this.txtNomeFornecedor.Size = new System.Drawing.Size(265, 22);
             this.txtNomeFornecedor.TabIndex = 21;
+            this.txtNomeFornecedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeFornecedor_KeyPress);
             // 
             // txtNomeProduto
             // 
-            this.txtNomeProduto.Location = new System.Drawing.Point(161, 217);
+            this.txtNomeProduto.Location = new System.Drawing.Point(191, 206);
+            this.txtNomeProduto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNomeProduto.Name = "txtNomeProduto";
-            this.txtNomeProduto.Size = new System.Drawing.Size(266, 22);
+            this.txtNomeProduto.Size = new System.Drawing.Size(265, 22);
             this.txtNomeProduto.TabIndex = 22;
+            this.txtNomeProduto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeProduto_KeyPress);
             // 
             // mskCNPJ
             // 
-            this.mskCNPJ.Location = new System.Drawing.Point(161, 262);
-            this.mskCNPJ.Mask = "000.000.000.-00";
+            this.mskCNPJ.Location = new System.Drawing.Point(191, 247);
+            this.mskCNPJ.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.mskCNPJ.Mask = "00.000.000/0000-00";
             this.mskCNPJ.Name = "mskCNPJ";
-            this.mskCNPJ.Size = new System.Drawing.Size(120, 22);
+            this.mskCNPJ.Size = new System.Drawing.Size(145, 22);
             this.mskCNPJ.TabIndex = 23;
             // 
             // mskTelefone
             // 
-            this.mskTelefone.Location = new System.Drawing.Point(161, 300);
+            this.mskTelefone.Location = new System.Drawing.Point(191, 288);
+            this.mskTelefone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.mskTelefone.Mask = "(99) 0000-0000";
             this.mskTelefone.Name = "mskTelefone";
-            this.mskTelefone.Size = new System.Drawing.Size(120, 22);
+            this.mskTelefone.Size = new System.Drawing.Size(101, 22);
             this.mskTelefone.TabIndex = 24;
             // 
             // btnExcForn
             // 
             this.btnExcForn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(185)))), ((int)(((byte)(137)))));
+            this.btnExcForn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExcForn.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
-            this.btnExcForn.Location = new System.Drawing.Point(63, 381);
+            this.btnExcForn.Location = new System.Drawing.Point(71, 372);
             this.btnExcForn.Margin = new System.Windows.Forms.Padding(4);
             this.btnExcForn.Name = "btnExcForn";
-            this.btnExcForn.Size = new System.Drawing.Size(129, 58);
+            this.btnExcForn.Size = new System.Drawing.Size(128, 58);
             this.btnExcForn.TabIndex = 36;
             this.btnExcForn.Text = "Excluir\r\nfornecedor";
             this.btnExcForn.UseVisualStyleBackColor = false;
@@ -220,8 +235,9 @@
             // btnAltForn
             // 
             this.btnAltForn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(185)))), ((int)(((byte)(137)))));
+            this.btnAltForn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAltForn.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
-            this.btnAltForn.Location = new System.Drawing.Point(200, 381);
+            this.btnAltForn.Location = new System.Drawing.Point(208, 372);
             this.btnAltForn.Margin = new System.Windows.Forms.Padding(4);
             this.btnAltForn.Name = "btnAltForn";
             this.btnAltForn.Size = new System.Drawing.Size(128, 58);
@@ -233,11 +249,12 @@
             // btnCadForn
             // 
             this.btnCadForn.BackColor = System.Drawing.Color.Chocolate;
+            this.btnCadForn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCadForn.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
-            this.btnCadForn.Location = new System.Drawing.Point(336, 381);
+            this.btnCadForn.Location = new System.Drawing.Point(344, 372);
             this.btnCadForn.Margin = new System.Windows.Forms.Padding(4);
             this.btnCadForn.Name = "btnCadForn";
-            this.btnCadForn.Size = new System.Drawing.Size(116, 58);
+            this.btnCadForn.Size = new System.Drawing.Size(128, 58);
             this.btnCadForn.TabIndex = 34;
             this.btnCadForn.Text = "Cadastrar \r\nfornecedor";
             this.btnCadForn.UseVisualStyleBackColor = false;
@@ -246,11 +263,23 @@
             // gridFornecedores
             // 
             this.gridFornecedores.AllowUserToAddRows = false;
-            this.gridFornecedores.AllowUserToOrderColumns = true;
+            this.gridFornecedores.AllowUserToDeleteRows = false;
+            this.gridFornecedores.AllowUserToResizeColumns = false;
+            this.gridFornecedores.AllowUserToResizeRows = false;
+            this.gridFornecedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridFornecedores.BackgroundColor = System.Drawing.Color.Snow;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridFornecedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridFornecedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridFornecedores.GridColor = System.Drawing.SystemColors.ActiveBorder;
-            this.gridFornecedores.Location = new System.Drawing.Point(509, 70);
+            this.gridFornecedores.Location = new System.Drawing.Point(513, 100);
+            this.gridFornecedores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridFornecedores.MultiSelect = false;
             this.gridFornecedores.Name = "gridFornecedores";
             this.gridFornecedores.ReadOnly = true;
@@ -266,21 +295,23 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancelar.Font = new System.Drawing.Font("Gentium Basic", 9F, System.Drawing.FontStyle.Bold);
-            this.btnCancelar.Location = new System.Drawing.Point(336, 272);
+            this.btnCancelar.Location = new System.Drawing.Point(356, 268);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(111, 50);
+            this.btnCancelar.Size = new System.Drawing.Size(101, 41);
             this.btnCancelar.TabIndex = 37;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.button1_Click);
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // fornecedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(213)))), ((int)(((byte)(187)))));
-            this.ClientSize = new System.Drawing.Size(1098, 543);
+            this.ClientSize = new System.Drawing.Size(1099, 543);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnExcForn);
             this.Controls.Add(this.btnAltForn);
@@ -296,7 +327,7 @@
             this.Controls.Add(this.lblFornecedor);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.nomeEmpresa);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.logoEmpresa);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "fornecedores";
@@ -305,7 +336,7 @@
             this.Load += new System.EventHandler(this.fornecedores_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logoEmpresa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridFornecedores)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -313,7 +344,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox logoEmpresa;
         private System.Windows.Forms.Label nomeEmpresa;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem produçãoToolStripMenuItem;

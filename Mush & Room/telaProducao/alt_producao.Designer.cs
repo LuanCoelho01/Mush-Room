@@ -135,7 +135,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "alt_producao";
             this.Text = "Alterar dados de produção";
-            this.Load += new System.EventHandler(this.alt_producao_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

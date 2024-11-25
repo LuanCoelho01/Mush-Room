@@ -36,7 +36,7 @@ namespace Mush___Room.telaProducao
             con.AbrirConexao();
             verificar();
 
-            sql = "SELECT * FROM TBusuario WHERE nome_usuario = '"+txtUsuario.Text+"' AND senha_usuario ='"+txtSenha.Text+"'"; //select na tabela TBproducao pelo id em ordem crescente
+            sql = "SELECT * FROM TBusuarios WHERE nome_usuario = '"+txtUsuario.Text+"' AND senha_usuario ='"+txtSenha.Text+"'"; 
             cmd = new SqlCommand(sql, con.con);
             SqlDataAdapter da = new SqlDataAdapter(); //o adapter recebe o nome de "da"
             da.SelectCommand = cmd; // o "da" recebe o comando de select 
