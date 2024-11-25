@@ -181,7 +181,7 @@ namespace Mush___Room.telaFornecedores
                 return;
             }
 
-            if (mskCNPJ.Text == "   .   .  -  " || mskCNPJ.Text.Length < 15)
+            if (mskCNPJ.Text == "   .   .  -  " || mskCNPJ.Text.Length < 14)
             {
                 MessageBox.Show("Preencha o campo 'CNPJ'", "Cadastrar fornecedor", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 mskCNPJ.Text = "";
